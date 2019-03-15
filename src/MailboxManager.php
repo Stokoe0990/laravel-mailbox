@@ -2,11 +2,12 @@
 
 namespace BeyondCode\Mailbox;
 
-use Illuminate\Support\Manager;
 use BeyondCode\Mailbox\Drivers\Log;
 use BeyondCode\Mailbox\Drivers\Mailgun;
 use BeyondCode\Mailbox\Drivers\Postmark;
+use BeyondCode\Mailbox\Drivers\RawMime;
 use BeyondCode\Mailbox\Drivers\SendGrid;
+use Illuminate\Support\Manager;
 
 class MailboxManager extends Manager
 {
@@ -17,22 +18,27 @@ class MailboxManager extends Manager
 
     public function createLogDriver()
     {
-        return new Log;
+        return new Log();
     }
 
     public function createMailgunDriver()
     {
-        return new Mailgun;
+        return new Mailgun();
     }
 
     public function createSendGridDriver()
     {
-        return new SendGrid;
+        return new SendGrid();
     }
 
     public function createPostmarkDriver()
     {
-        return new Postmark;
+        return new Postmark();
+    }
+
+    public function createRawMimeDriver()
+    {
+        return new RawMime();
     }
 
     public function getDefaultDriver()
